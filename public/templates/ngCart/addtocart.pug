@@ -1,0 +1,9 @@
+div(ng-hide='attrs.id')
+  a.ui.button(ng-disabled='true', ng-transclude='')
+div.ui.equal.width.grid(ng-show='attrs.id')
+  div.ui.column(ng-show='inCart()')
+    a.ui.button.red(ng-click='ngCart.removeItemById(id)', style='cursor: pointer;') Remove
+  div.ui.column
+    span(ng-show='quantityMax')
+      select#quantity(name='quantity', class="ui selection dropdown" ng-model='q', ng-options=' v for v in qtyOpt')
+    a.ui.button.green(ng-click='ngCart.addItem(id, name, price, q, data)', ng-transclude='')

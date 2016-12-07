@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title #{title}
+    link(rel='stylesheet', type='text/css', href='/bower_components/semantic/dist/semantic.min.css')
+    link(rel='stylesheet', type='text/css', href='/private/style.css')
+    link(rel='shortcut icon', href='img/favicon.ico', type='image/x-icon')
+    script(type="application/javascript" src='/bower_components/jquery/dist/jquery.min.js')
+    script(type="application/javascript" src='/bower_components/semantic/dist/semantic.min.js')
+
+body
+  header.ui.container
+    nav.ui.menu
+      a.item(href='/admin') Products
+      a.item(href='/admin/purchases') Purchases
+      a.item(href='/admin/about-as') About as
+      a.item(href='/admin/products-new') New products
+      a.item(href='/admin/settings') Setting
+      a.item(href='/logout') Logout
+  .ui.container
+    block content
+
+  footer

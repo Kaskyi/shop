@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title #{title}
+    link(rel='stylesheet', type='text/css', href='bower_components/semantic/dist/semantic.min.css')
+    link(rel='shortcut icon', href='img/favicon.ico', type='image/x-icon')
+    script(type="application/javascript" src='bower_components/jquery/dist/jquery.min.js')
+    script(type="application/javascript" src='bower_components/semantic/dist/semantic.min.js')
+
+body
+  .ui.container
+    h1 Log In
+    .err
+    form.ui.form(action='/login', method='post')
+      .field
+        label Name:
+        input(type='text', name='username')
+      .field
+        label Password:
+        input(type='password', name='password')
+      .field
+        input.ui.button(type='submit', value='Log In')

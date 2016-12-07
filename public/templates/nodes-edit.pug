@@ -1,0 +1,11 @@
+.row
+  input(type='text', ng-repeat='tag in code.tags', name='name', value='{{tag}}' ) 
+.row
+  .col.s12.m6
+    .label Login :
+    input(type='text', name='name', value='{{code.login}}')
+  .col.s12.m6
+    label.label Password :
+    input(type='text', name='name', value='{{code.password}}')
+.row
+  textarea(name='name', rows='3') {{code.data}}

@@ -1,0 +1,23 @@
+﻿extends admin-layout
+
+block content
+  h1 Create product
+
+  form.ui.form(action='/admin/products-new', method='post')
+    .field
+      label Name:
+      input(type='text', name='name')
+    .field
+      label Image:
+      input(type='text', name='url')
+    .field
+      label Description
+      input(type='text', name='description')
+    .field
+      label Price:
+      input(type='text', name='price')
+    .field
+      label Sale:
+      input(type='text', name='sale')
+    .field
+      input.ui.button(type='submit', value='Create')

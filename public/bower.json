@@ -1,0 +1,25 @@
+{
+  "name": "shopclient no webpack",
+  "authors": [
+    "Jack Kamenskiy <kamenskiygj@live.com>"
+  ],
+  "description": "",
+  "main": "",
+  "private": true,
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.9",
+    "angular-ui-router": "^0.3.2",
+    "semantic": "^2.2.6",
+    "jquery": "^3.1.1",
+    "ngmap": "^1.17.8"
+  }
+}

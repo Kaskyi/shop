@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+        <title>Shop Client</title>
+        <link rel='shortcut icon' href='img/favicon.ico' type='image/x-icon'>
+
+        <link rel="stylesheet" href="https://necolas.github.io/normalize.css/latest/normalize.css" media="screen">
+        <link rel="stylesheet" href="bower_components/semantic/dist/semantic.min.css" media="screen">
+
+        <script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
+        <script type="text/javascript" src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+        <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/bower_components/semantic/dist/semantic.min.js"></script>
+        <script type="text/javascript" src="/bundle.js"></script>
+        <!-- $locationProvider.html5Mode -->
+        <base href="/"/>
+
+    </head>
+    <body ng-app="shop">
+        <header class="ui container">
+            <nav class="ui pointing menu">
+                <a class="item" ui-sref="#">AngularUI Router</a>
+                <div class="item">
+                    <div class="ui transparent icon input">
+                        <input type="text" placeholder="Search...">
+                        <i class="search link icon"></i>
+                    </div>
+                </div>
+                <!-- <li> -->
+                <div class="right menu">
+                    <a ng-class="{ active: $state.is('site.products')}" class="item" ui-sref="site.products">Товары</a>
+                    <a ng-class="{ active: $state.is('site.about')}" class="item" ui-sref="site.about">О нас</a>
+                    <a ng-class="{ active: $state.is('site.cart')}" class="item" ui-sref="site.cart">Корзина</a>
+
+                </div>
+            </li>
+            <a ui-sref="site.cart" style="padding: 5px 0 0 0; width:150px">
+                <ngcart-summary></ngcart-summary>
+            </a>
+        </ul>
+    </nav>
+</header>
+<div ng-app='myApp' class="ui container">
+    <div ui-view></div>
+</div>
+</body>
+</html>
+
+</head>
