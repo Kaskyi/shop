@@ -28,7 +28,8 @@
   },
   "scripts": {
     "test": "mocha",
-    "build": "private/webpack && public/webpack",
+    "build": "./public/build",
+    "webpack": "cd ./public && npm start",
     "start": "node server"
   }
 }
