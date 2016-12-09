@@ -17,7 +17,8 @@
     "tests"
   ],
   "scripts": {
-    "start": "webpack"
+    "build": "webpack",
+    "start": "webpack --watch"
   },
   "devDependencies": {
     "css-loader": "^0.26.0",

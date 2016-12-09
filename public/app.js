@@ -1,4 +1,7 @@
-//const shop = require('./js/shop');
-const routes = require('./js/shop.routes');
-//const directives = require('./js/shop.directives');
+
+angular.module('root',['shop','shop.routes']);
+require('./js/shop.directives');
+require('./js/shop');
+require('./js/shop.routes');
+
 require('!style-loader!css-loader!sass-loader!./sass/style.sass');
