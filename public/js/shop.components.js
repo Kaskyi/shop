@@ -3,7 +3,9 @@
  */
 module.exports = angular.module('shop.components', [])
 
-    .controller('CartController',['$scope', 'ngCart', function($scope, ngCart) {
 
-    }])
+    .component('productsProduct', {
+        template: require('../templates/components/products-product.pug'),
+        bindings: { product: '<' }
+    });
 ;

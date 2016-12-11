@@ -1,0 +1,8 @@
+.thumbnail
+    h3
+        img.ui.middle.image(ng-src='{{ $ctrl.product.imageUrl }}')
+    h4 {{ $ctrl.product.name }}
+    p {{ $ctrl.product.snippet }}
+    h3.price {{ $ctrl.product.price | currency}}
+    ngcart-addtocart(id='{{ $ctrl.product._id }}', name='{{ $ctrl.product.name }}', price='{{ $ctrl.product.price  }}', data='$ctrl.product', quantity='1', quantity-max='30')
+        | Add To Cart

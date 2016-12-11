@@ -38,7 +38,7 @@ module.exports = angular.module('shop.directives', [])
             transclude: true,
             template: function(element, attrs) {
                 if ( typeof attrs.templateUrl == 'undefined' ) {
-                    return require('../templates/ngCart/addtocart.pug');
+                    return require('../templates/directives/addtocart.pug');
                 } else {
                     return attrs.templateUrl;
                 }
@@ -72,7 +72,7 @@ module.exports = angular.module('shop.directives', [])
             scope: {},
             template: function(element, attrs) {
                 if ( typeof attrs.templateUrl == 'undefined' ) {
-                    return require('../templates/ngCart/cart.pug');
+                    return require('../templates/directives/cart.pug');
                 } else {
                     return attrs.templateUrl;
                 }
@@ -91,7 +91,7 @@ module.exports = angular.module('shop.directives', [])
             transclude: true,
             template: function(element, attrs) {
                 if ( typeof attrs.templateUrl == 'undefined' ) {
-                    return require('../templates/ngCart/summary.pug');
+                    return require('../templates/directives/summary.pug');
                 } else {
                     return attrs.templateUrl;
                 }
@@ -127,7 +127,7 @@ module.exports = angular.module('shop.directives', [])
             transclude: true,
             template: function(element, attrs) {
                 if ( typeof attrs.templateUrl == 'undefined' ) {
-                    return require('../templates/ngCart/checkout.pug');
+                    return require('../templates/directives/checkout.pug');
                 } else {
                     return attrs.templateUrl;
                 }

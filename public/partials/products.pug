@@ -15,12 +15,4 @@
                         .ui.button Search
             .four.column.row
                 .ui.stackable.grid
-                    .eight.wide.column(ng-repeat='item in products')
-                        .thumbnail
-                            h3
-                                img.ui.middle.image(ng-src='{{ item.imageUrl }}')
-                            h4 {{ item.name }}
-                            p {{ item.snippet }}
-                            h3.price {{ item.price | currency}}
-                            ngcart-addtocart(id='{{ item._id }}', name='{{ item.name }}', price='{{ item.price  }}', data='item', quantity='1', quantity-max='30')
-                                | Add To Cart
+                    products-product.eight.wide.column(ng-repeat='product in products' product="product")
