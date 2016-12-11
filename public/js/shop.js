@@ -1,4 +1,4 @@
-module.exports = angular.module('shop', ['shop.directives','shop.routes'])
+module.exports = angular.module('shop', ['shop.directives','shop.components','shop.routes'])
 
 
     .config([function () {
@@ -15,6 +15,7 @@ module.exports = angular.module('shop', ['shop.directives','shop.routes'])
         $rootScope.$on('ngCart:change', function(){
             ngCart.$save();
         });
+
 
         if (angular.isObject(store.get('cart'))) {
             ngCart.$restore(store.get('cart'));

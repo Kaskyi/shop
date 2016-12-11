@@ -1,0 +1,26 @@
+.ui.grid
+    .four.wide.column
+        br
+        .ui.menu.vertical
+            a.item(href='#') Sort
+            a.item(href='#') Sort
+            a.item(href='#') Sort
+            a.item(href='#') Sort
+    .twelve.wide.column
+        .ui.four.column.grid
+            .four.column.row.wide
+                .four.column.wide
+                    .ui.fluid.action.input
+                        input(type='text', placeholder='Search...')
+                        .ui.button Search
+            .four.column.row
+                .ui.stackable.grid
+                    .eight.wide.column(ng-repeat='item in products')
+                        .thumbnail
+                            h3
+                                img.ui.middle.image(ng-src='{{ item.imageUrl }}')
+                            h4 {{ item.name }}
+                            p {{ item.snippet }}
+                            h3.price {{ item.price | currency}}
+                            ngcart-addtocart(id='{{ item._id }}', name='{{ item.name }}', price='{{ item.price  }}', data='item', quantity='1', quantity-max='30')
+                                | Add To Cart

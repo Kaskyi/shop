@@ -7,30 +7,27 @@ module.exports = angular.module('shop.routes',['ui.router'])
             $locationProvider.html5Mode(true);
         }
         $urlRouterProvider.otherwise('/');
-        // HOME STATES AND NESTED VIEWS ========================================
         $stateProvider
+            .state('root', {
+                url: '/',
+                template: require('../partials/root.pug')
+            })
             .state('site', {
                 abstract: true,
                 template: '<div ui-view></div>',
                 controller: 'mainController'
             })
-            .state('root', {
-                url: '/',
-                template: '<h1>Welcome to Products shop</h1><div ui-view></div>',
-            })
             .state('site.products', {
-
                 url: '/products',
-                templateUrl: 'partials/index.html'
+                template: require('../partials/products.pug')
             })
-            // nested list with custom controller
-            //.state('site.about', {
-            //    url: '/about',
-            //    template: require('../partials/about.pug')
-            //})
+            .state('site.about', {
+                url: '/about',
+                template: require('../partials/about.pug')
+            })
             .state('site.cart', {
                 url: '/cart',
-                templateUrl: 'partials/cart.html'
+                template: require('../partials/cart.pug')
             })
     })
 

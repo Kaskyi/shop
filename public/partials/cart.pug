@@ -1,0 +1,22 @@
+.row
+    .col-md-12
+        h1
+            | Cart
+            span  (ngcart-cart)
+        ngcart-cart
+.row
+    .col-md-12
+        h1
+            | Checkout
+            span  (ngcart-checkout)
+        p Check console for results!
+        .row
+            .col-xs-4.col-md-4
+                h4 service 'log'
+                ngcart-checkout(service='log') Checkout
+            .col-xs-4.col-md-4
+                h4 service 'http'
+                ngcart-checkout(service='http', settings='httpSettings') Checkout
+            .col-xs-4.col-md-4
+                h4 service 'paypal'
+                ngcart-checkout(service='paypal', settings='payPalSettings')

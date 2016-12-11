@@ -5,6 +5,24 @@ module.exports = angular.module('shop.directives', [])
         $scope.ngCart = ngCart;
     }])
 
+    .directive('shopHeader', [function(){
+        return {
+            restrict : 'E',
+            controller : 'CartController',
+            scope: {},
+            transclude: true,
+            template: require('../templates/header.pug')
+        };
+    }])
+    .directive('shopFooter', [function(){
+        return {
+            restrict : 'E',
+            controller : 'CartController',
+            scope: {},
+            transclude: true,
+            template: require('../templates/footer.pug')
+        };
+    }])
     .directive('ngcartAddtocart', ['ngCart', function(ngCart){
         return {
             restrict : 'E',
