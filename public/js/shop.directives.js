@@ -28,11 +28,9 @@ module.exports = angular.module('shop.directives', [])
             restrict : 'E',
             controller : 'CartController',
             scope: {
-                id:'@',
-                name:'@',
+                product:'=product',
                 quantity:'@',
                 quantityMax:'@',
-                price:'@',
                 data:'='
             },
             transclude: true,
@@ -46,11 +44,11 @@ module.exports = angular.module('shop.directives', [])
             link:function(scope, element, attrs){
                 scope.attrs = attrs;
                 scope.inCart = function(){
-                    return  ngCart.getItemById(attrs.id);
+                    return  ngCart.getItemById(scope.product._id);
                 };
 
                 if (scope.inCart()){
-                    scope.q = ngCart.getItemById(attrs.id).getQuantity();
+                    scope.q = ngCart.getItemById(scope.product._id).getQuantity();
                 } else {
                     scope.q = parseInt(scope.quantity);
                 }
@@ -58,6 +56,9 @@ module.exports = angular.module('shop.directives', [])
                 scope.qtyOpt =  [];
                 for (var i = 1; i <= scope.quantityMax; i++) {
                     scope.qtyOpt.push(i);
+                }
+                scope.addToCard = function(){
+                    ngCart.addItem(scope.product._id, scope.product.name, scope.product.price, scope.q, scope.data);
                 }
 
             }
