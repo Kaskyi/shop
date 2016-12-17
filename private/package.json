@@ -1,0 +1,33 @@
+{
+  "name": "shop_client",
+  "version": "0.0.1",
+  "homepage": "",
+  "authors": [
+    "Jack Kamenskiy <kamenskiygj@live.com>"
+  ],
+  "description": "",
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack --watch"
+  },
+  "devDependencies": {
+    "css-loader": "^0.26.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "node-sass": "^3.13.0",
+    "pug": "^2.0.0-beta6",
+    "pug-html-loader": "^1.0.9",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.14.0"
+  }
+}

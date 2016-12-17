@@ -1,0 +1,27 @@
+header.container
+  nav.navbar.navbar-default.navbar-fixed-top(role='navigation')
+    .container
+      .navbar-header
+        button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+          span.sr-only Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a.navbar-brand(ui-sref='root') Shop
+      .collapse.navbar-collapse
+        ul.nav.navbar-nav.navbar-right
+          li(ng-class="{ active: $state.is('admin.products')}")
+            a(ui-sref='admin.products') Products
+          li(ng-class="{ active: $state.is('admin.purchases')}")
+            a(ui-sref='admin.purchases') Purchases
+          li(ng-class="{ active: $state.is('admin.about-as')}")
+            a(ui-sref='admin.about-as') About as
+          li(ng-class="{ active: $state.is('admin.products-new')}")
+            a(ui-sref='admin.products-new') New products
+          li(ng-class="{ active: $state.is('admin.settings')}")
+            a(ui-sref='admin.settings') Setting
+          li(ng-class="{ active: $state.is('logout')}")
+            a(ui-sref='logout') Logout
+
+
+
