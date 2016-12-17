@@ -43,7 +43,7 @@ app.use(bodyParser.urlencoded({
 }));
 //app.use(multer());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/private', express.static(path.join(__dirname, 'private')));
+app.use('/admin', express.static(path.join(__dirname, 'private')));
 
 // database
 app.use(models());
@@ -53,7 +53,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 require('./libs/passwordAuth.js');
 
-app.all('/private/*', ensureLoggedIn('/login'), function(req, res, next) {
+app.all('/admin/*', ensureLoggedIn('/login'), function(req, res, next) {
     next();
 });
 app.use('/admin', ensureLoggedIn('/'), adminRouter);
