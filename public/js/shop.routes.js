@@ -1,5 +1,5 @@
-module.exports = angular.module('shop.routes',['ui.router'])
-    .run(['$rootScope','$state',  function ($rootScope,$state) {
+module.exports = angular.module('shop.routes', ['ui.router'])
+    .run(['$rootScope', '$state', function ($rootScope, $state) {
         $rootScope.$state = $state;
     }])
     .config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
@@ -35,17 +35,19 @@ module.exports = angular.module('shop.routes',['ui.router'])
         ngCart.setShipping(10.99);
         ngCart.setTaxRate(13);
 
-        $http({
-            method: 'GET',
-            url: 'api/products'
-        })
-            .success(function (data, status, headers, config) {
-                $scope.products = data;
+        if (!$scope.products)
+            $http({
+                method: 'GET',
+                url: 'api/products'
             })
-            .error(function (data, status, headers, config) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-            });
+                .success(function (data, status, headers, config) {
+
+                    $scope.products = data;
+                })
+                .error(function (data, status, headers, config) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                });
     });
 ;
 

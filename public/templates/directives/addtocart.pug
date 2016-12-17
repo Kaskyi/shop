@@ -5,6 +5,6 @@ div.no-gutter.text-center(ng-show='product._id')
     a.btn.btn-danger(ng-click='ngCart.removeItemById(product._id)', style='cursor: pointer;') Remove
   div.col-sm-3
     span(ng-show='quantityMax')
-      select#quantity(name='quantity', class="form-control" ng-model='q', ng-options=' v for v in qtyOpt')
+      select#quantity(name='quantity', class="form-control" ng-model='q', ng-change="addToCard()", ng-options=' v for v in qtyOpt')
   div.col-sm-4
     a.btn.btn-default(ng-click='addToCard()') Add to card
