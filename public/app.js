@@ -1,7 +1,8 @@
 
-angular.module('root',['shop','shop.routes']);
+angular.module('root',['shop']);
 require('./js/shop.directives');
 require('./js/shop.components');
+require('./js/shop.resources');
 require('./js/shop');
 require('./js/shop.routes');
 

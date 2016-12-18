@@ -1,16 +1,17 @@
-module.exports = angular.module('shop', ['shop.directives','shop.components','shop.routes'])
+module.exports = angular.module('shop', ['shop.directives','shop.components','shop.routes','shop.resources'])
 
 
-    .config([function () {
-
-    }])
 
     .provider('$ngCart', function () {
         this.$get = function () {
         };
     })
 
-    .run(['$rootScope', 'ngCart','ngCartItem', 'store', function ($rootScope, ngCart, ngCartItem, store) {
+    .run(['$rootScope', 'ngCart','ngCartItem', 'store','Restangular', function ($rootScope, ngCart, ngCartItem, store,Restangular) {
+
+
+
+        //rw
 
         $rootScope.$on('ngCart:change', function(){
             ngCart.$save();

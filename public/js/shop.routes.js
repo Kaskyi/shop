@@ -1,4 +1,4 @@
-module.exports = angular.module('shop.routes', ['ui.router'])
+module.exports = angular.module('shop.routes', ['ui.router', 'restangular'])
     .run(['$rootScope', '$state', function ($rootScope, $state) {
         $rootScope.$state = $state;
     }])
@@ -30,24 +30,26 @@ module.exports = angular.module('shop.routes', ['ui.router'])
                 template: require('../partials/cart.pug')
             })
     })
+    .config(function (RestangularProvider) {
+        RestangularProvider.setBaseUrl('http://localhost:8080/api/v1');
+        RestangularProvider.setDefaultHttpFields({cache: true});
 
-    .controller('mainController', function ($http, ngCart, $scope) {
+        console.log('shop config loaded');
+    })
+
+    .controller('mainController', function ($http, ngCart, $scope, Restangular) {
         ngCart.setShipping(10.99);
         ngCart.setTaxRate(13);
 
-        if (!$scope.products)
-            $http({
-                method: 'GET',
-                url: 'api/products'
-            })
-                .success(function (data, status, headers, config) {
+        var baseAccounts = Restangular.all('products');
+        //   Restangular.one('thing', 123).withHttpConfig({ cache: true}).get().then(function (thing) {
+        //     return thing;
+        //});
+        baseAccounts.getList().then(function (products) {
+            $scope.products = products;
+        });
 
-                    $scope.products = data;
-                })
-                .error(function (data, status, headers, config) {
-                    // called asynchronously if an error occurs
-                    // or server returns response with an error status.
-                });
+
     });
 ;
 
