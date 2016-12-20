@@ -12,6 +12,8 @@ header.container
         ul.nav.navbar-nav.navbar-right
           li(ng-class="{ active: $state.is('admin.products')}")
             a(ui-sref='admin.products') Products
+          li(ng-class="{ active: $state.is('admin.data')}")
+            a(ui-sref='admin.data') Data
           li(ng-class="{ active: $state.is('admin.purchases')}")
             a(ui-sref='admin.purchases') Purchases
           li(ng-class="{ active: $state.is('admin.about-as')}")

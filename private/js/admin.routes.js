@@ -1,9 +1,13 @@
-module.exports = angular.module('admin.routes', ['ui.router'])
+module.exports = angular.module('admin.routes', ['ui.router','restangular'])
 
 
     .run(['$rootScope', '$state', function ($rootScope, $state) {
         $rootScope.$state = $state;
     }])
+    .config(function (RestangularProvider) {
+        RestangularProvider.setBaseUrl('http://localhost:8080/api/v1');
+        RestangularProvider.setDefaultHttpFields({cache: true});
+    })
     .config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
         if (window.location.port !== "8011") {
             $locationProvider.html5Mode(true);
@@ -32,6 +36,16 @@ module.exports = angular.module('admin.routes', ['ui.router'])
                 url: '/products-new',
                 template: require('../templates/admin-create-product.pug')
             })
+            .state('admin.data', {
+                url: '/data',
+                template: require('../templates/admin-products.pug'),
+                controller:'dataController'
+            })
+            .state('admin.datum', {
+                url: '/data/:datumId',
+                template: require('../templates/admin-product-details.pug'),
+                controller:'datumController'
+            })
             .state('admin.purchases', {
                 url: '/purchases',
                 template: require('../templates/admin-purchases.pug')
@@ -44,7 +58,17 @@ module.exports = angular.module('admin.routes', ['ui.router'])
                 url: '/'
             })
     })
-
+    .controller('datumController', function ($scope, $stateParams, Restangular) {
+        Restangular.all('products', $stateParams.datumId).getList().then(function (products) {
+            $scope.product = products[0];
+        });
+    })
+    .controller('dataController', function ($scope, Restangular) {
+        Restangular.all('products').getList().then(function (products) {
+            $scope.products = products;
+        });
+    })
     .controller('mainController', function ($scope) {
 
-    });
+    })
+;

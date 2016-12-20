@@ -1,1 +1,20 @@
-h1 Details
+.container
+  .col-sm-4
+  .row.col-sm-6
+  form
+    .col-sm-6
+      img.img-responsive(ng-src='{{product.imageUrl}}')
+    .col-sm-6
+      .input-group.form-group
+        span.input-group-addon Name:
+        input.form-control(type='text' ng-model='product.name')
+      .input-group.form-group
+        span.input-group-addon Price:
+        input.form-control(type='text' ng-model='product.price')
+      .input-group.form-group
+        span.input-group-addon Snippet:
+        input.form-control(type='text' ng-model='product.snippet')
+
+      .form-group
+        a.btn.btn-danger Delete
+        a.btn.btn-success(ng-click='product.save("/")') Save
