@@ -1,5 +1,6 @@
 .products-product.col-xs-6.col-sm-4.col-md-4.col-lg-3
   img.img-responsive(ng-src='{{ $ctrl.product.imageUrl }}')
+  <a ui-sref="site.product({productId: $ctrl.product._id})">View Contact</a>
   h4 {{ $ctrl.product.name }}
   .text
     p {{ $ctrl.product.snippet }}

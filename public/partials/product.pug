@@ -1,0 +1,12 @@
+.container
+  .col-sm-4
+  .row.col-sm-6
+    h4 {{ product.name }}
+    .col-sm-6
+      img.img-responsive(ng-src='{{product.imageUrl}}')
+    .col-sm-6
+      h4.price {{ product.price | currency}}
+      .text
+        p {{ product.snippet }}
+        .hover
+      ngcart-addtocart(product='product', data='product', quantity='1', quantity-max='30')

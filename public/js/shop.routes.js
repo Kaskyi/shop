@@ -21,6 +21,17 @@ module.exports = angular.module('shop.routes', ['ui.router', 'restangular'])
                 url: '/products',
                 template: require('../partials/products.pug')
             })
+            .state('site.product', {
+                url: '/products/:productId',
+                template: require('../partials/product.pug'),
+                controller: function ($scope, $stateParams, Restangular) {
+                    var baseAccounts = Restangular.one('products', $stateParams.productId);
+                    baseAccounts.getList().then(function (products) {
+                        $scope.product = products[0];
+                    });
+
+                }
+            })
             .state('site.about', {
                 url: '/about',
                 template: require('../partials/about.pug')
@@ -33,11 +44,9 @@ module.exports = angular.module('shop.routes', ['ui.router', 'restangular'])
     .config(function (RestangularProvider) {
         RestangularProvider.setBaseUrl('http://localhost:8080/api/v1');
         RestangularProvider.setDefaultHttpFields({cache: true});
-
-        console.log('shop config loaded');
     })
 
-    .controller('mainController', function ($http, ngCart, $scope, Restangular) {
+    .controller('mainController', function (ngCart, $scope, Restangular) {
         ngCart.setShipping(10.99);
         ngCart.setTaxRate(13);
 
