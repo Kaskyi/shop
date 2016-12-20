@@ -14,13 +14,25 @@ router.get('/products', function (req, res) {
 
 router.get('/products/:id', function (req, res) {
     ProductModel.find({
-        name: req.params.id
+        _id: req.params.id
     }, function (err, products) {
         if (err || !products) {
             return res.json('null');
         }
-        return res.json(product);
+        return res.json(products);
     }).limit(1);
+});
+
+//TODO add validate the post data
+router.post('/order', function(req, res) {
+    var newPurchase = new PurchaseModel(req.body);
+    newPurchase.save(function(err, purchase) {
+        if (err) return console.error(err);
+        else {
+            console.info("New purchase - %s", purchase.name);
+            return res.redirect('/');
+        }
+    });
 });
 
 module.exports = router;

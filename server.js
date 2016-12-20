@@ -1,4 +1,4 @@
-﻿ //nodejs
+﻿//nodejs
 var fs = require('fs');
 var http = require('http');
 var path = require('path');
@@ -17,9 +17,12 @@ var errorHandler = require('errorhandler');
 var cookieParser = require('cookie-parser');
 //own
 var models = require('./models/index.js');
+
 var indexRouter = require('./routes');
-var apiRouter = require('./routes/api');
 var adminRouter = require('./routes/admin');
+var basicRouter = require('./routes/basic-api');
+var publicRouter = require('./routes/public-api');
+var oauth2Router = require('./routes/oauth2-api');
 
 var app = express();
 
@@ -53,12 +56,15 @@ app.use(passport.initialize());
 app.use(passport.session());
 require('./libs/passwordAuth.js');
 
-app.all('/admin/*', ensureLoggedIn('/login'), function(req, res, next) {
+app.use('/api/v1/', publicRouter);
+app.use('/basic/v1/', passport.authenticate('basic', { session: false }), basicRouter);
+app.use('/oauth2/v1/', oauth2Router);
+
+app.use('/admin', ensureLoggedIn('/'), adminRouter);
+app.all('/admin/*', ensureLoggedIn('/login'), function (req, res, next) {
     next();
 });
-app.use('/admin', ensureLoggedIn('/'), adminRouter);
-app.use('/api', apiRouter);
-app.get('/login', function(req, res) {
+app.get('/login', function (req, res) {
     return res.render('login');
 });
 // IF creeate a app server where clients wiil be edit their own db or better sepperate to each user ? 
@@ -69,16 +75,16 @@ app.post('/login',
     })
 );
 
-app.get('/logout', function(req, res) {
+app.get('/logout', function (req, res) {
     req.logout();
     res.redirect('/login');
 });
 app.use('/', indexRouter);
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
-    res.end('err');
+    res.end('err 404');
 });
 
 // development only
@@ -86,6 +92,6 @@ if ('development' == app.get('env')) {
     app.use(errorHandler());
 }
 
-http.createServer(app).listen(app.get('port'), function() {
+http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
 });
