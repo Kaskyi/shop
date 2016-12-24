@@ -10,23 +10,12 @@ header.container-fluid
         a.navbar-brand.hidden-md-up(ng-click="toggleSideNav()" href="#menu-toggle" ) Side nav
       .collapse.navbar-collapse
         ul.nav.navbar-nav
-          li
-            a
-        ul.nav.navbar-nav.navbar-right
-          li(ng-class="{ active: $state.is('admin.products')}")
-            a(ui-sref='admin.products') Products
-          li(ng-class="{ active: $state.is('admin.data')}")
-            a(ui-sref='admin.data') Data
           li(ng-class="{ active: $state.is('admin.purchases')}")
             a(ui-sref='admin.purchases') Purchases
-          li(ng-class="{ active: $state.is('admin.about-as')}")
-            a(ui-sref='admin.about-as') About as
-          li(ng-class="{ active: $state.is('admin.products-new')}")
-            a(ui-sref='admin.products-new') New products
           li(ng-class="{ active: $state.is('admin.settings')}")
             a(ui-sref='admin.settings') Setting
+        ul.nav.navbar-nav.navbar-right
+          li(ng-class="{ active: $state.is('admin.tariff')}")
+            a(ui-sref='admin.tariff') Tariff
           li(ng-class="{ active: $state.is('logout')}")
             a(href='/logout') Logout
-
-
-

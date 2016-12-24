@@ -1,4 +1,4 @@
-module.exports = angular.module('admin.routes', ['ui.router','restangular'])
+module.exports = angular.module('admin.routes', ['ui.router', 'restangular'])
 
 
     .run(['$rootScope', '$state', function ($rootScope, $state) {
@@ -25,35 +25,39 @@ module.exports = angular.module('admin.routes', ['ui.router','restangular'])
                 template: '<div ui-view></div>',
                 controller: 'mainController'
             })
+            .state('admin.interface', {
+                url: '/interface',
+                template: '<interface></interface>'
+            })
+            .state('admin.interface.about', {
+                url: '/about',
+                template: '<interface-about></interface-about>'
+            })
+            .state('admin.interface.main', {
+                url: '/main',
+                template: '<interface-main></interface-main>'
+            })
             .state('admin.products', {
                 url: '/products',
-                template: require('../templates/admin-products.pug')
+                controller: 'dataController',
+                template: '<products products="products"></products>'
             })
-            .state('admin.about-as', {
-                url: '/about-as',
-                template: require('../templates/admin-about-as.pug')
-            })
-            .state('admin.products-new', {
-                url: '/products-new',
-                template: require('../templates/admin-create-product.pug')
-            })
-            .state('admin.data', {
-                url: '/data',
-                template: require('../templates/admin-products.pug'),
-                controller:'dataController'
-            })
-            .state('admin.datum', {
-                url: '/data/:datumId',
-                template: require('../templates/admin-product-details.pug'),
-                controller:'datumController'
+            .state('admin.products.product', {
+                url: '/:datumId',
+                controller: 'datumController',
+                template: '<products-product></products-product>'
             })
             .state('admin.purchases', {
                 url: '/purchases',
-                template: require('../templates/admin-purchases.pug')
+                template: '<purchases></purchases>'
             })
             .state('admin.settings', {
                 url: '/settings',
-                template: require('../templates/admin-settings.pug')
+                template: '<settings></settings>'
+            })
+            .state('admin.tariff', {
+                url: '/tariff',
+                template: '<tariff></tariff>'
             })
             .state('logout', {
                 url: '/'

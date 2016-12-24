@@ -5,50 +5,116 @@ var ProductModel = require('../models').ProductModel;
 var PurchaseModel = require('../models').PurchaseModel;
 var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 
-
-router.post('/products-new', ensureLoggedIn('/login'), function(req, res) {
-    ProductModel.find({
-        name: req.body.name
-    }, function(err, user) {
-        if (err || !user || user.length == 0) {
-            var newProduct = new ProductModel(req.body);
-            newProduct.save(function(err, product) {
-                if (err) return console.error(err);
-                else {
-                    console.info("New product - %s", product.name);
-                    return res.redirect('/admin');
-                }
-            });
-        } else
-            return res.redirect('/admin');
-    }).limit(1);
-});
-router.put('/products', function (req, res) {
-    console.log('Save :' + req.body._id);
-
-});
+/*
+ * Products
+ */
 router.get('/products', function (req, res) {
-    ProductModel.find({}, function (err, products) {
-        if (err || !products)
-            return res.json('null');
-        else
-            return res.json(products);
+    return ProductModel.find(function (err, products) {
+        if (!err) {
+            return res.send(products);
+        } else {
+            res.statusCode = 500;
+            log.error('Internal error(%d): %s', res.statusCode, err.message);
+            return res.send({error: 'Server error'});
+        }
     });
 });
 
-router.get('/products/:id', ensureLoggedIn('/login'), function(req, res) {
-    ProductModel.find({
-        name: req.params.id
-    }, function(err, products) {
-        if (err || !products) {
-            return res.json(null);
+router.post('/products', function (req, res) {
+    var product
+        = new ProductModel({
+        price: req.body.price,
+        imageUrl: req.body.imageUrl,
+        name: req.body.name,
+        snippet: req.body.snippet
+    });
+
+    product.save(function (err) {
+        if (!err) {
+            log.info("product created");
+            return res.send({status: 'OK', product: product});
+        } else {
+            console.log(err);
+            if (err.name == 'ValidationError') {
+                res.statusCode = 400;
+                res.send({error: 'Validation error'});
+            } else {
+                res.statusCode = 500;
+                res.send({error: 'Server error'});
+            }
+            log.error('Internal error(%d): %s', res.statusCode, err.message);
         }
-        return res.json(products[0]);
-    }).limit(1);
+    });
 });
 
-router.get('/purchases', ensureLoggedIn('/login'), function(req, res) {
-    PurchaseModel.find({}, function(err, purchases) {
+router.get('/products/:id', function (req, res) {
+    return ProductModel.findById(req.params.id, function (err, product) {
+        if (!product) {
+            res.statusCode = 404;
+            return res.send({error: 'Not found'});
+        }
+        if (!err) {
+            return res.send({status: 'OK', product: product});
+        } else {
+            res.statusCode = 500;
+            log.error('Internal error(%d): %s', res.statusCode, err.message);
+            return res.send({error: 'Server error'});
+        }
+    });
+});
+
+router.put('/products/:id', function (req, res) {
+    return ProductModel.findById(req.params.id, function (err, product) {
+        if (!product) {
+            res.statusCode = 404;
+            return res.send({error: 'Not found'});
+        }
+        product.price = req.body.price;
+        product.imageUrl = req.body.imageUrl;
+        product.name = req.body.name;
+        product.snippet = req.body.snippet;
+        return product.save(function (err) {
+            if (!err) {
+                log.info("product updated");
+                return res.send({status: 'OK', product: product});
+            } else {
+                if (err.name == 'ValidationError') {
+                    res.statusCode = 400;
+                    res.send({error: 'Validation error'});
+                } else {
+                    res.statusCode = 500;
+                    res.send({error: 'Server error'});
+                }
+                log.error('Internal error(%d): %s', res.statusCode, err.message);
+            }
+        });
+    });
+});
+
+router.delete('/products/:id', function (req, res) {
+    return ProductModel.findById(req.params.id, function (err, product) {
+        if (!product) {
+            res.statusCode = 404;
+            return res.send({error: 'Not found'});
+        }
+        return product.remove(function (err) {
+            if (!err) {
+                log.info("product removed");
+                return res.send({status: 'OK'});
+            } else {
+                res.statusCode = 500;
+                log.error('Internal error(%d): %s', res.statusCode, err.message);
+                return res.send({error: 'Server error'});
+            }
+        });
+    });
+});
+
+/*
+ * Products
+ */
+router.get('/purchases', ensureLoggedIn('/login'), function (req, res) {
+    PurchaseModel.find({}, function (err, purchases) {
         if (err || !purchases) {
             return res.json(null);
         }

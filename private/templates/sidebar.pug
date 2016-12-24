@@ -1,5 +1,11 @@
 ul.sidebar-nav
-  li(ng-class="{ active: $state.is('admin.products')}")
-    a(ui-sref='admin.products') Products
+  li(ng-class="{ active: $state.is('admin.interface')}")
+    a(ui-sref='admin.interface') Interface
+      ul
+        li(ng-class="{ active: $state.is('admin.interface.about')}")
+          a(ui-sref='admin.interface.about') About
+        li(ng-class="{ active: $state.is('admin.interface.main')}")
+          a(ui-sref='admin.interface.main') Main
+  li.divider
   li(ng-class="{ active: $state.is('admin.data')}")
-    a(ui-sref='admin.data') Data
+    a(ui-sref='admin.products') Products

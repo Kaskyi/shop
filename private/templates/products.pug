@@ -1,11 +1,21 @@
 .container
-
   .row
     .col-sm-3
-      .btn-group-vertical
-        a.btn.btn-default Products
-        a.btn.btn-default Comments
-        a.btn.btn-default Products
+      .sidebar-nav.navbar-default
+        .navbar-header
+          ul.nav.navbar-nav
+            li.active
+              a(href='#') Menu Item 1
+            li
+              a(href='#') Menu Item 2
+            li
+              a(href='#') Menu Item 3
+            li
+              a(href='#') Menu Item 4
+            li
+              a(href='#')
+                | Reviews
+                span.badge 1,118
     .col-sm-9
       .btn.btn-default Refresh
       table.table.table-striped
@@ -17,7 +27,7 @@
             th price
             th @
         tbody
-          tr(ng-repeat='product in products' product="product")
+          tr(ng-repeat='product in $ctrl.products')
             th {{$index + 1}}
             th {{product._id}}
             th {{product.name}}
