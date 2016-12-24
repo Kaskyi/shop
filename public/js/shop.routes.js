@@ -43,7 +43,7 @@ module.exports = angular.module('shop.routes', ['ui.router', 'restangular'])
     })
     .config(function (RestangularProvider) {
         RestangularProvider.setBaseUrl('http://localhost:8080/api/v1');
-        RestangularProvider.setDefaultHttpFields({cache: true});
+        //RestangularProvider.setDefaultHttpFields({cache: true});
     })
 
     .controller('mainController', function (ngCart, $scope, Restangular) {

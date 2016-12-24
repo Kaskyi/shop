@@ -14,7 +14,4 @@
         li
           a.item(href='#') Sort
     .col-xm-12.col-sm-12.col-md-10
-      .row
-        .four.column.row
-          .ui.stackable.grid
-            products-product(ng-repeat='product in products' product="product")
+      products-product(ng-repeat='product in products' product="product")

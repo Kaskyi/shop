@@ -5,7 +5,8 @@ module.exports = angular.module('admin.routes', ['ui.router','restangular'])
         $rootScope.$state = $state;
     }])
     .config(function (RestangularProvider) {
-        RestangularProvider.setBaseUrl('http://localhost:8080/api/v1');
+        RestangularProvider.setBaseUrl('http://localhost:8080/local/v1');
+        //RestangularProvider.setExtraFields(['username','password']);
         RestangularProvider.setDefaultHttpFields({cache: true});
     })
     .config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
