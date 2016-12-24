@@ -3,7 +3,7 @@
     "tokenLife": 3600
   },
   "mongoose": {
-    "uri": "mongodb://localhost/apiDB"
+    "uri": "mongodb://localhost/shop"
   },
   "default": {
     "api": {
@@ -18,6 +18,19 @@
       "clientId": "android",
       "clientSecret": "SomeRandomCharsAndNumbers"
     },
+    "clients": [
+      {
+        "name": "Android API v1",
+        "clientId": "android",
+        "clientSecret": "SomeRandomCharsAndNumbers"
+      }
+    ],
+    "users": [
+      {
+        "username": "admin",
+        "password": "admin"
+      }
+    ],
     "products": [
       {
         "price": 123,

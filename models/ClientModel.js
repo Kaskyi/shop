@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-// Client
 var Client = new Schema({
     name: {
         type: String,
@@ -20,52 +19,4 @@ var Client = new Schema({
 });
 
 var ClientModel = mongoose.model('Client', Client);
-
-// AccessToken
-var AccessToken = new Schema({
-    userId: {
-        type: String,
-        required: true
-    },
-    clientId: {
-        type: String,
-        required: true
-    },
-    token: {
-        type: String,
-        unique: true,
-        required: true
-    },
-    created: {
-        type: Date,
-        default: Date.now
-    }
-});
-
-var AccessTokenModel = mongoose.model('AccessToken', AccessToken);
-
-// RefreshToken
-var RefreshToken = new Schema({
-    userId: {
-        type: String,
-        required: true
-    },
-    clientId: {
-        type: String,
-        required: true
-    },
-    token: {
-        type: String,
-        unique: true,
-        required: true
-    },
-    created: {
-        type: Date,
-        default: Date.now
-    }
-});
-
-var RefreshTokenModel = mongoose.model('RefreshToken', RefreshToken);
-module.exports.ClientModel = ClientModel;
-module.exports.AccessTokenModel = AccessTokenModel;
-module.exports.RefreshTokenModel = RefreshTokenModel;
+module.exports = ClientModel;
