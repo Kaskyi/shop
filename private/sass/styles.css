@@ -22,9 +22,6 @@ body {
 /* Custom page CSS
 -------------------------------------------------- */
 
-body {
-    padding-top: 70px;
-}
 .no-gutter > [class*='col-'] {
     padding-right:0;
     padding-left:0;

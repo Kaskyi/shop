@@ -1,0 +1,5 @@
+ul.sidebar-nav
+  li(ng-class="{ active: $state.is('admin.products')}")
+    a(ui-sref='admin.products') Products
+  li(ng-class="{ active: $state.is('admin.data')}")
+    a(ui-sref='admin.data') Data

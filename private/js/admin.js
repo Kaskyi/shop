@@ -1,13 +1,25 @@
 module.exports = angular.module('admin', ['admin.routes'])
-    .directive('shopHeader', [function () {
+    .directive('ngHeader', [function () {
         return {
             restrict: 'E',
             scope: {},
             transclude: true,
-            template: require('../templates/header.pug')
+            template: require('../templates/header.pug'),
+            link: function (scope) {
+                scope.toggleSideNav = function () {
+                    $("#wrapper").toggleClass("toggled");
+                }
+            }
         };
     }])
-    .directive('shopFooter', [function () {
+    .directive('ngSidebar', [function () {
+        return {
+            restrict: 'E',
+            transclude: true,
+            template: require('../templates/sidebar.pug')
+        };
+    }])
+    .directive('ngFooter', [function () {
         return {
             restrict: 'E',
             transclude: true,

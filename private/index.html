@@ -19,9 +19,26 @@
 
 </head>
 <body ng-app="root">
-<shop-header></shop-header>
-<main ui-view></main>
-<shop-footer></shop-footer>
+
+<ng-header></ng-header>
+<div id="wrapper">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ng-sidebar></ng-sidebar>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <main ui-view></main>
+        <main ui-view></main> <main ui-view></main>
+        <main ui-view></main>
+        <main ui-view></main>
+
+    </div>
+    <!-- /#page-content-wrapper -->
+</div>
+<ng-footer></ng-footer>
 </body>
 </html>
 
