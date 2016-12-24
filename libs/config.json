@@ -1,0 +1,10 @@
+{
+  "port": 8080,
+  "security": {
+    "tokenLife": 3600
+  },
+  "mongoose": {
+    "uri": "mongodb://localhost/apiDB"
+  },
+
+}

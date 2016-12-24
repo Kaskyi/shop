@@ -23,6 +23,19 @@ router.post('/products-new', ensureLoggedIn('/login'), function(req, res) {
             return res.redirect('/admin');
     }).limit(1);
 });
+router.put('/products', function (req, res) {
+    console.log('Save :' + req.body._id);
+
+});
+router.get('/products', function (req, res) {
+    ProductModel.find({}, function (err, products) {
+        if (err || !products)
+            return res.json('null');
+        else
+            return res.json(products);
+    });
+});
+
 router.get('/products/:id', ensureLoggedIn('/login'), function(req, res) {
     ProductModel.find({
         name: req.params.id

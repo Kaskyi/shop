@@ -51,16 +51,31 @@ app.use('/admin', express.static(path.join(__dirname, 'private')));
 // database
 app.use(models());
 
+var oauth2 = require('./libs/oauth2');
 //security and api
 app.use(passport.initialize());
 app.use(passport.session());
 require('./libs/passwordAuth.js');
 
 app.use('/api/v1/', publicRouter);
-app.use('/basic/v1/', passport.authenticate('basic', { session: false }), basicRouter);
-app.use('/oauth2/v1/', oauth2Router);
+app.use('/local/v1/',ensureLoggedIn('/login'), basicRouter);
 
-app.use('/admin', ensureLoggedIn('/'), adminRouter);
+app.use('/basic/v1/', passport.authenticate('basic', { session: false }), basicRouter);//ssl
+
+app.post('/oauth2/token', oauth2.token);
+app.use('/oauth2/v1/', passport.authenticate('bearer', { session: false }), oauth2Router);//ssl
+
+app.get('/userInfo',
+    passport.authenticate('bearer', { session: false }),
+    function(req, res) {
+        // req.authInfo is set using the `info` argument supplied by
+        // `BearerStrategy`.  It is typically used to indicate a scope of the token,
+        // and used in access control checks.  For illustrative purposes, this
+        // example simply returns the scope in the response.
+        res.json({ user_id: req.user.userId, name: req.user.username, scope: req.authInfo.scope })
+    }
+);
+app.use('/admin', ensureLoggedIn('/login'), adminRouter);
 app.all('/admin/*', ensureLoggedIn('/login'), function (req, res, next) {
     next();
 });
@@ -68,11 +83,16 @@ app.get('/login', function (req, res) {
     return res.render('login');
 });
 // IF creeate a app server where clients wiil be edit their own db or better sepperate to each user ? 
+
 app.post('/login',
     passport.authenticate('local', {
         successRedirect: '/admin',
         failureRedirect: '/login' //Return message
-    })
+    }),
+    function(req, res) {
+        console.log("HERE");
+        res.redirect('/login');
+    }
 );
 
 app.get('/logout', function (req, res) {
