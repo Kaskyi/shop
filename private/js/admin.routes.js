@@ -42,8 +42,8 @@ module.exports = angular.module('admin.routes', ['ui.router', 'restangular'])
                 controller: 'dataController',
                 template: '<products products="products"></products>'
             })
-            .state('admin.products.product', {
-                url: '/:datumId',
+            .state('admin.product', {
+                url: '/products/:datumId',
                 controller: 'datumController',
                 template: '<products-product></products-product>'
             })
