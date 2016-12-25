@@ -2,13 +2,20 @@ module.exports = angular.module('admin', ['admin.routes'])
     .directive('ngHeader', [function () {
         return {
             restrict: 'E',
-            scope: {},
             transclude: true,
-            template: require('../templates/header.pug'),
-            link: function (scope) {
-                scope.toggleSideNav = function () {
-                    $("#wrapper").toggleClass("toggled");
-                }
+            template: require('../templates/directives/header.pug')
+        };
+    }])
+    .directive('ngToggle', [function () {
+        return {
+            restrict: 'C',
+            scope: {
+                target: "@"
+            },
+            link: function (scope, element) {
+                element.on('click', function () {
+                    $(scope.target).toggleClass("toggled");
+                });
             }
         };
     }])
@@ -16,14 +23,14 @@ module.exports = angular.module('admin', ['admin.routes'])
         return {
             restrict: 'E',
             transclude: true,
-            template: require('../templates/sidebar.pug')
+            template: require('../templates/directives/sidebar.pug')
         };
     }])
     .directive('ngFooter', [function () {
         return {
             restrict: 'E',
             transclude: true,
-            template: require('../templates/footer.pug')
+            template: require('../templates/directives/footer.pug')
         };
     }])
     .component('interface', {
@@ -42,7 +49,10 @@ module.exports = angular.module('admin', ['admin.routes'])
         }
     })
     .component('productsProduct', {
-        template: require('../templates/products-product.pug')
+        template: require('../templates/products-product.pug'),
+        bindings: {
+            product: '='
+        }
     })
     .component('purchases', {
         template: require('../templates/purchases.pug')

@@ -7,7 +7,7 @@ header.container-fluid
           span.icon-bar
           span.icon-bar
           span.icon-bar
-        a.navbar-brand.hidden-md-up(ng-click="toggleSideNav()" href="#menu-toggle" ) Side nav
+        a.ng-toggle.navbar-brand(target='#wrapper') Side nav
       .collapse.navbar-collapse
         ul.nav.navbar-nav
           li(ng-class="{ active: $state.is('admin.purchases')}")

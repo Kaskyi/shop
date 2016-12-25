@@ -45,7 +45,7 @@ module.exports = angular.module('admin.routes', ['ui.router', 'restangular'])
             .state('admin.product', {
                 url: '/products/:datumId',
                 controller: 'datumController',
-                template: '<products-product></products-product>'
+                template: '<products-product product="product"></products-product>'
             })
             .state('admin.purchases', {
                 url: '/purchases',
@@ -64,8 +64,9 @@ module.exports = angular.module('admin.routes', ['ui.router', 'restangular'])
             })
     })
     .controller('datumController', function ($scope, $stateParams, Restangular) {
-        Restangular.all('products', $stateParams.datumId).getList().then(function (products) {
-            $scope.product = products[0];
+        Restangular.all('products').one($stateParams.datumId).get().then(function (product) {
+            $scope.product = product;
+            console.log(product);
         });
     })
     .controller('dataController', function ($scope, Restangular) {

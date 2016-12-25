@@ -3,18 +3,17 @@
   .row.col-sm-6
   form
     .col-sm-6
-      img.img-responsive(ng-src='{{product.imageUrl}}')
+      img.img-responsive(ng-src='{{$ctrl.product.imageUrl}}')
     .col-sm-6
       .input-group.form-group
         span.input-group-addon Name:
-        input.form-control(type='text' ng-model='product.name')
+        input.form-control(type='text' ng-model='$ctrl.product.name')
       .input-group.form-group
         span.input-group-addon Price:
-        input.form-control(type='text' ng-model='product.price')
+        input.form-control(type='text' ng-model='$ctrl.product.price')
       .input-group.form-group
         span.input-group-addon Snippet:
-        input.form-control(type='text' ng-model='product.snippet')
-
+        input.form-control(type='text' ng-model='$ctrl.product.snippet')
       .form-group
-        a.btn.btn-danger Delete
-        a.btn.btn-success(ng-click='product.save("/")') Save
+        a.btn.btn-danger(ng-click='$ctrl.product.remove()') Delete
+        a.btn.btn-success(ng-click='$ctrl.product.save()') Save
