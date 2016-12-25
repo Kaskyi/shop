@@ -111,7 +111,7 @@ router.delete('/products/:id', function (req, res) {
 });
 
 /*
- * Products
+ * Purchases
  */
 router.get('/purchases', ensureLoggedIn('/login'), function (req, res) {
     PurchaseModel.find({}, function (err, purchases) {

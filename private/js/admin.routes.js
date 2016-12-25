@@ -66,7 +66,6 @@ module.exports = angular.module('admin.routes', ['ui.router', 'restangular'])
     .controller('datumController', function ($scope, $stateParams, Restangular) {
         Restangular.all('products').one($stateParams.datumId).get().then(function (product) {
             $scope.product = product;
-            console.log(product);
         });
     })
     .controller('dataController', function ($scope, Restangular) {

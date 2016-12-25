@@ -19,6 +19,34 @@ module.exports = angular.module('admin', ['admin.routes'])
             }
         };
     }])
+    .directive('ngImageLoad', [function () {
+        return {
+            restrict: 'E',
+            scope: {
+                src: '='
+            },
+            template: '<img class="img-responsive" ng-src="{{src}}" alt="File Image are not selected"/></div>' +
+            '<input type="file"  onchange="angular.element(this).scope().uploadImage(this.files)"/>',
+            link: function (scope) {
+                scope.imageIsLoaded = function (e) {
+                    scope.$apply(function () {
+                        scope.src = e.target.result;
+                    });
+                };
+                scope.uploadImage = function (files) {
+                    // FileReader support
+                    if (FileReader && files && files.length) {
+                        var reader = new FileReader();
+                        reader.onload = scope.imageIsLoaded;
+                        reader.readAsDataURL(files[0]);
+                    }
+                    else {
+                        console.log("Not support");
+                    }
+                };
+            }
+        };
+    }])
     .directive('ngSidebar', [function () {
         return {
             restrict: 'E',

@@ -3,11 +3,12 @@
   .row.col-sm-6
   form
     .col-sm-6
-      img.img-responsive(ng-src='{{$ctrl.product.imageUrl}}')
-    .col-sm-6
+      .input-group.form-group
+        span.input-group-addon  Image:
+        ng-image-load(src='$ctrl.product.imageUrl')
       .input-group.form-group
         span.input-group-addon Name:
-        input.form-control(type='text' ng-model='$ctrl.product.name')
+        input.form-control(type='text' ng-model='$ctrl.product.price')
       .input-group.form-group
         span.input-group-addon Price:
         input.form-control(type='text' ng-model='$ctrl.product.price')
